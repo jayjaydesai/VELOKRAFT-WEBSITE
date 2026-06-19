@@ -655,10 +655,13 @@ catSearch.addEventListener('input',e=>renderCats(e.target.value));
 
 /* ---------- AI PARTS ASSISTANT ---------- */
 const SYSTEM=`You are the Velokraft Parts Assistant, an AI helper on the website of Velokraft Auto Parts — a parts supplier in Tallinn, Estonia serving workshops, dealers, fleets and car owners across Europe.
-Your job: help visitors identify the right auto part. If they haven't said, ask for vehicle make, model, year and engine, plus the part or symptom. Suggest the likely part category and what info pins it down (VIN or OE number). Be concise and knowledgeable, like an experienced parts counter specialist.
-You CANNOT see live stock or prices. For availability, pricing and ordering, direct them to send an enquiry via the form on this page or contact sales@velokraft.eu / +372 5848 2192. Never invent specific prices or stock numbers.
-Velokraft carries: engine, suspension & steering, body & exterior, electrical & ignition, brakes, cooling, transmission, and filters/maintenance parts. Compatible with BMW, Mercedes, VW, Audi, Toyota, Ford, Volvo, Renault, Škoda, Peugeot and more.
-Keep replies short — 2 to 5 sentences. Be warm and professional.`;
+Your role: help visitors describe what they need and guide them to the right next step. When the vehicle is missing, ask for make, model, year and engine, plus the part or symptom.
+CRITICAL — you have NO parts catalogue, database or cross-reference tool and cannot look anything up. NEVER state, confirm or guess what a specific part number refers to — not its part type, not its brand, not its vehicle fitment. You cannot verify part numbers, so you must not invent an answer for one. If you are not certain, say so plainly.
+Part numbers exist in different systems: vehicle-maker OE numbers and manufacturer catalogue numbers (e.g. MANN, Bosch, Febi, Mahle). Do NOT assume any number is an "OE number" or claim which system or brand it belongs to.
+When someone gives a part number or asks what a part fits, do NOT identify it yourself. Explain that our team can cross-reference the number and confirm the exact part, fitment and availability, and ask for the vehicle details to pass on.
+You CANNOT see live stock or prices. For availability, pricing, ordering and number look-ups, direct them to send an enquiry via the form on this page or contact sales@velokraft.eu / +372 5848 2192. Never invent prices, stock, part identities or compatibility.
+Velokraft carries: engine, suspension & steering, body & exterior, electrical & ignition, brakes, cooling, transmission, and filters/maintenance parts, for many makes including BMW, Mercedes, VW, Audi, Toyota, Ford, Volvo, Renault, Škoda and Peugeot.
+You may share general automotive knowledge — how a part works, what a category covers, what info pins down a fit. Keep replies short — 2 to 5 sentences. Be warm, honest and professional.`;
 const chat=document.getElementById('chat'),input=document.getElementById('chatInput'),sendBtn=document.getElementById('chatSend');
 let history=[];
 function addMsg(text,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=text;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;}
@@ -668,21 +671,37 @@ async function send(text){
   input.value='';sendBtn.disabled=true;
   addMsg(text,'user');history.push({role:'user',content:text});
   const dots=addDots();
+  let reply='';
+  // 1) Live site: secure server backend (keeps the API key on the server)
   try{
     const res=await fetch("chat.php",{
       method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({messages:history,lang:LANG})
     });
-    const data=await res.json();
-    const reply=data.reply||"Sorry, I didn't catch that — could you rephrase?";
-    dots.remove();
+    if(res.ok){const data=await res.json();if(data&&data.reply)reply=data.reply;}
+  }catch(e){}
+  // 2) Fallback: lets the assistant work in this preview where there is no PHP server
+  if(!reply){try{reply=await askAI();}catch(e){}}
+  dots.remove();
+  if(reply){
     const m=addMsg('','bot');
     let i=0;const tw=setInterval(()=>{m.textContent=reply.slice(0,i+=2);chat.scrollTop=chat.scrollHeight;if(i>=reply.length){clearInterval(tw);m.textContent=reply}},10);
     history.push({role:'assistant',content:reply});
-  }catch(err){
-    dots.remove();
+  }else{
     addMsg("I'm having trouble connecting right now. Please email sales@velokraft.eu or call +372 5848 2192 and our team will help straight away.",'bot');
-  }finally{sendBtn.disabled=false;input.focus();}
+  }
+  sendBtn.disabled=false;input.focus();
+}
+async function askAI(){
+  const names={en:'English',et:'Estonian',de:'German',pl:'Polish'};
+  const sys=SYSTEM+"\nReply in "+(names[LANG]||'English')+" unless the visitor clearly writes in another language.";
+  const res=await fetch("https://api.anthropic.com/v1/messages",{
+    method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,system:sys,messages:history})
+  });
+  if(!res.ok)return'';
+  const data=await res.json();
+  return (data.content||[]).map(b=>b&&b.type==='text'?b.text:'').join('').trim();
 }
 sendBtn.addEventListener('click',()=>send());
 input.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
