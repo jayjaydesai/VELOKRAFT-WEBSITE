@@ -22,6 +22,11 @@ if (!$apiKey) {
 $in = json_decode(file_get_contents('php://input'), true);
 $messages = (isset($in['messages']) && is_array($in['messages'])) ? $in['messages'] : [];
 
+// Selected site language (en/et/de/pl) — assistant replies in this language.
+$langCode = isset($in['lang']) && is_string($in['lang']) ? strtolower(trim($in['lang'])) : 'en';
+$langNames = ['en' => 'English', 'et' => 'Estonian', 'de' => 'German', 'pl' => 'Polish'];
+$langName = isset($langNames[$langCode]) ? $langNames[$langCode] : 'English';
+
 // Abuse guards: only keep the last 12 turns, cap each message length.
 $messages = array_slice($messages, -12);
 foreach ($messages as &$m) {
@@ -41,7 +46,8 @@ $system = "You are the Velokraft Parts Assistant, an AI helper on the website of
         . "Your job: help visitors identify the right auto part. If they haven't said, ask for vehicle make, model, year and engine, plus the part or symptom. Suggest the likely part category and what info pins it down (VIN or OE number). Be concise and knowledgeable, like an experienced parts counter specialist.\n"
         . "You CANNOT see live stock or prices. For availability, pricing and ordering, direct them to send an enquiry via the form on this page or contact sales@velokraft.eu / +372 5848 2192. Never invent specific prices or stock numbers.\n"
         . "Velokraft carries: engine, suspension & steering, body & exterior, electrical & ignition, brakes, cooling, transmission, and filters/maintenance parts. Compatible with BMW, Mercedes, VW, Audi, Toyota, Ford, Volvo, Renault, Skoda, Peugeot and more.\n"
-        . "Keep replies short — 2 to 5 sentences. Be warm and professional.";
+        . "Keep replies short — 2 to 5 sentences. Be warm and professional.\n"
+        . "IMPORTANT: The visitor has selected {$langName} as their language. Reply in {$langName}, unless the visitor clearly writes to you in a different language — in that case, match the language they used. Keep technical part names accurate.";
 
 $payload = [
     'model'      => 'claude-haiku-4-5-20251001',
