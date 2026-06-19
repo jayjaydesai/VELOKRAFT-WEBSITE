@@ -3,448 +3,730 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Velokraft Auto Parts – Quality Parts, Trusted Performance</title>
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="assets/js/main.js" defer></script>
+<title>Velokraft Auto Parts — Find the Right Part, First Time</title>
+<meta name="description" content="Velokraft Auto Parts, Tallinn. OEM-grade and genuine auto parts for every major make, with an AI parts assistant and Europe-wide dispatch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0C2745; --deep:#081A30; --ink:#060F1C; --blue:#1B4A85;
+  --orange:#F5A623; --orange-dk:#D98C12;
+  --head:#FFFFFF; --muted:#A6C0DE; --muted2:#7A8FAB;
+  --card:rgba(255,255,255,.045); --card-bd:rgba(255,255,255,.11); --card-hov:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.10);
+  --mono:'JetBrains Mono',monospace; --disp:'Space Grotesk',sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--muted);background:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);font-weight:500}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1.08;color:var(--head)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.btn-orange{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:var(--navy);padding:13px 26px;border-radius:7px;font-weight:700;font-size:14px;text-decoration:none;transition:background .2s,box-shadow .2s}
+.btn-orange:hover{background:var(--orange-dk);box-shadow:0 10px 30px rgba(245,166,35,.25)}
+
+/* NAV */
+header{position:sticky;top:0;z-index:200;background:rgba(8,22,42,.85);backdrop-filter:blur(8px);transition:background .3s,box-shadow .3s;border-bottom:1px solid var(--line)}
+header.scrolled{background:rgba(8,22,42,.94);box-shadow:0 6px 30px rgba(0,0,0,.4)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brandmark{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brandmark .nm{display:flex;flex-direction:column;line-height:1.05}
+.brandmark .nm b{font-family:var(--disp);font-weight:700;font-size:20px;color:#fff;letter-spacing:.5px}
+.brandmark .nm s{font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--orange);text-transform:uppercase;text-decoration:none}
+.navlinks{display:flex;align-items:center;gap:24px;list-style:none}
+.navlinks a{color:#C7D6E8;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.navlinks a:hover{color:#fff}
+.navlogin{border:1px solid rgba(255,255,255,.25);color:#fff!important;padding:8px 16px;border-radius:6px;font-weight:600;font-size:13px}
+.navlogin:hover{border-color:var(--orange);color:var(--orange)!important}
+.navcta{background:var(--orange);color:var(--navy)!important;padding:9px 18px;border-radius:6px;font-weight:700;font-size:13px;letter-spacing:.3px}
+.navcta:hover{background:var(--orange-dk)}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:#fff;margin:5px 0;border-radius:2px;transition:.3s}
+
+/* HERO */
+.hero{position:relative;background:radial-gradient(120% 120% at 80% 0%,var(--blue) 0%,var(--navy) 55%,var(--ink) 100%);color:#fff;overflow:hidden;padding:70px 0 84px}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(120% 80% at 70% 10%,#000 30%,transparent 75%);opacity:.6}
+.hero::after{content:"";position:absolute;top:-120px;right:-120px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.16),transparent 65%)}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:20px}
+.hero-eyebrow::before{content:"";width:26px;height:1px;background:var(--orange)}
+.hero h1{font-size:clamp(38px,5vw,62px);font-weight:700;color:#fff;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero-sub{font-size:18px;color:var(--muted);max-width:480px;margin-bottom:30px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:#CFE0F4;background:rgba(255,255,255,.06);border:1px solid var(--line);padding:7px 13px;border-radius:50px}
+.chip b{color:#fff;font-weight:600}
+.chip i{color:var(--orange);font-style:normal}
+
+/* AI CONSOLE */
+.console{background:rgba(6,16,30,.78);border:1px solid var(--card-bd);border-radius:16px;backdrop-filter:blur(8px);box-shadow:0 30px 70px rgba(0,0,0,.5);overflow:hidden}
+.console-bar{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.03)}
+.console-bar .pulse{width:9px;height:9px;border-radius:50%;background:#34D399;animation:pl 2.2s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}70%{box-shadow:0 0 0 9px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.console-bar .t{font-family:var(--mono);font-size:12px;letter-spacing:1px;color:#B9C9DC;text-transform:uppercase}
+.console-bar .t b{color:#fff}
+.console-bar .tag{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--orange);border:1px solid rgba(245,166,35,.35);padding:3px 8px;border-radius:5px}
+.console-body{height:300px;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin}
+.console-body::-webkit-scrollbar{width:6px}.console-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:3px}
+.msg{max-width:88%;font-size:14.5px;line-height:1.55;padding:11px 14px;border-radius:12px;white-space:pre-wrap}
+.msg.bot{align-self:flex-start;background:rgba(255,255,255,.07);border:1px solid var(--line);color:#E7EFF8;border-bottom-left-radius:4px}
+.msg.user{align-self:flex-end;background:var(--orange);color:var(--navy);font-weight:500;border-bottom-right-radius:4px}
+.msg.bot a{color:var(--orange)}
+.dots{display:inline-flex;gap:4px;padding:4px 0}
+.dots i{width:6px;height:6px;border-radius:50%;background:#8FA8C6;animation:bd 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.18s}.dots i:nth-child(3){animation-delay:.36s}
+@keyframes bd{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+.examples{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px}
+.ex{font-size:12px;color:#BCD0E8;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:6px 11px;border-radius:50px;cursor:pointer;transition:.2s;font-family:var(--body)}
+.ex:hover{background:rgba(245,166,35,.16);border-color:rgba(245,166,35,.4);color:#fff}
+.console-input{display:flex;gap:9px;padding:13px 14px;border-top:1px solid var(--line);background:rgba(255,255,255,.03)}
+.console-input input{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#fff;padding:12px 14px;border-radius:9px;font-size:14px;font-family:var(--body);outline:none}
+.console-input input::placeholder{color:#7E92AB}
+.console-input input:focus{border-color:var(--orange)}
+.console-input button{background:var(--orange);color:var(--navy);border:0;width:46px;border-radius:9px;font-size:18px;cursor:pointer;transition:.2s;flex-shrink:0}
+.console-input button:hover{background:var(--orange-dk)}
+.console-input button:disabled{opacity:.5;cursor:not-allowed}
+
+/* STAT STRIP */
+.stats{background:var(--ink);color:#fff;padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat .n{font-family:var(--disp);font-weight:700;font-size:clamp(30px,3.6vw,42px);color:#fff}
+.stat .n span{color:var(--orange)}
+.stat .l{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-top:4px}
+
+/* BRAND MARQUEE */
+.marquee{background:var(--deep);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden}
+.marquee .lbl{text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);margin-bottom:16px}
+.track{display:flex;gap:54px;width:max-content;animation:scroll 32s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.track span{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:1px;color:rgba(255,255,255,.28);text-transform:uppercase;white-space:nowrap;transition:color .2s}
+.track span:hover{color:var(--orange)}
+
+/* SECTIONS (all dark, alternating tones) */
+.sec{padding:88px 0;position:relative;background:var(--navy);overflow:hidden}
+.sec-deep{background:var(--deep)}
+.sec::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:50px 50px;opacity:.55;mask-image:radial-gradient(85% 75% at 90% 0%,#000,transparent 70%);-webkit-mask-image:radial-gradient(85% 75% at 90% 0%,#000,transparent 70%)}
+.sec .wrap{position:relative;z-index:1}
+.sec-head{max-width:620px;margin-bottom:46px}
+.sec-head h2{font-size:clamp(28px,3.6vw,42px);font-weight:700;margin:10px 0 14px;color:#fff}
+.sec-head p{font-size:17px;color:var(--muted)}
+
+/* CATEGORIES */
+.cat-search{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--card-bd);border-radius:10px;padding:4px 4px 4px 16px;max-width:420px;margin-bottom:26px}
+.cat-search svg{flex-shrink:0;color:var(--muted2)}
+.cat-search input{flex:1;border:0;outline:none;font-size:15px;font-family:var(--body);padding:11px 0;background:transparent;color:#fff}
+.cat-search input::placeholder{color:var(--muted2)}
+.cat-search .k{font-family:var(--mono);font-size:11px;color:var(--orange);background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.3);padding:5px 9px;border-radius:6px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cat{position:relative;background:var(--card);border:1px solid var(--card-bd);border-radius:12px;padding:24px 20px;text-decoration:none;color:var(--muted);transition:transform .25s,border-color .25s,background .25s;overflow:hidden}
+.cat::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--orange);transition:width .3s}
+.cat:hover{transform:translateY(-4px);background:var(--card-hov);border-color:rgba(245,166,35,.35)}
+.cat:hover::after{width:100%}
+.cat .ic{font-size:26px;margin-bottom:14px;display:block}
+.cat .nm{font-family:var(--disp);font-weight:600;font-size:16px;margin-bottom:5px;color:#fff}
+.cat .ds{font-size:13px;color:var(--muted2)}
+.cat .ar{position:absolute;top:20px;right:20px;color:var(--muted2);transition:.25s;font-size:15px}
+.cat:hover .ar{color:var(--orange);transform:translate(3px,-3px)}
+.cat-empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px;font-size:15px}
+
+/* WHY */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.why-c{background:var(--card);border:1px solid var(--card-bd);border-radius:13px;padding:26px 22px;transition:transform .25s,background .25s}
+.why-c:hover{transform:translateY(-4px);background:var(--card-hov)}
+.why-c .n{font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--orange);margin-bottom:16px}
+.why-c h3{font-size:18px;font-weight:600;color:#fff;margin-bottom:9px}
+.why-c p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-txt h2{color:#fff;font-size:clamp(28px,3.6vw,42px);margin:10px 0 18px}
+.about-txt p{color:var(--muted);margin-bottom:15px;font-size:16px;line-height:1.75}
+.feats{display:grid;gap:16px}
+.feat{display:flex;gap:15px;background:var(--card);border:1px solid var(--card-bd);border-radius:12px;padding:20px;transition:transform .25s,background .25s}
+.feat:hover{transform:translateX(4px);background:var(--card-hov)}
+.feat .fi{width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--orange-dk));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.feat h4{font-family:var(--disp);font-size:15px;font-weight:600;color:#fff;margin-bottom:3px}
+.feat p{font-size:13.5px;color:var(--muted2);line-height:1.55}
+
+/* CATALOGUE */
+.cata{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
+.cata-c{display:flex;flex-direction:column;gap:9px;background:var(--card);border:1px solid var(--card-bd);border-radius:13px;padding:22px;transition:transform .25s,background .25s}
+.cata-c:hover{transform:translateY(-4px);background:var(--card-hov)}
+.cata-c .ic{font-size:24px}
+.cata-c h4{font-family:var(--disp);font-size:15px;font-weight:600;color:#fff}
+.cata-c .meta{font-family:var(--mono);font-size:11px;color:var(--muted2);letter-spacing:.5px}
+.cata-c a{margin-top:auto;display:inline-flex;align-items:center;gap:6px;color:var(--orange);font-size:13px;font-weight:600;text-decoration:none}
+.cata-c a:hover{color:#fff}
+.cata-note{font-family:var(--mono);font-size:12px;color:var(--muted2);letter-spacing:.5px}
+
+/* BLOG */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.post{background:var(--card);border:1px solid var(--card-bd);border-radius:14px;overflow:hidden;transition:transform .25s,background .25s;text-decoration:none;color:inherit;display:block}
+.post:hover{transform:translateY(-4px);background:var(--card-hov)}
+.post .ph{height:140px;background:linear-gradient(135deg,var(--blue),var(--deep));position:relative;overflow:hidden}
+.post .ph::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:24px 24px;opacity:.6}
+.post .ph .em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:42px}
+.post .bd{padding:20px}
+.post .tag{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--orange);background:rgba(245,166,35,.13);padding:4px 9px;border-radius:5px;display:inline-block;margin-bottom:11px}
+.post h4{font-family:var(--disp);font-size:17px;font-weight:600;color:#fff;margin-bottom:8px;line-height:1.25}
+.post p{font-size:14px;color:var(--muted2);line-height:1.55;margin-bottom:12px}
+.post .rd{font-size:13px;font-weight:600;color:var(--orange)}
+.post .dt{font-family:var(--mono);font-size:11px;color:var(--muted2);margin-top:6px}
+
+/* SERVICES */
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.svc{background:var(--card);border:1px solid var(--card-bd);border-radius:12px;padding:24px;border-top:3px solid var(--orange);transition:transform .25s,background .25s}
+.svc:hover{transform:translateY(-4px);background:var(--card-hov)}
+.svc .si{font-size:22px;margin-bottom:13px}
+.svc h4{font-family:var(--disp);font-size:16px;font-weight:600;color:#fff;margin-bottom:7px}
+.svc p{font-size:14px;color:var(--muted2);line-height:1.6}
+
+/* TEAM */
+.team{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.tm{display:flex;gap:18px;background:var(--card);border:1px solid var(--card-bd);border-radius:14px;padding:26px;transition:transform .25s,background .25s}
+.tm:hover{transform:translateY(-4px);background:var(--card-hov)}
+.tm .av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--orange-dk));color:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:19px;flex-shrink:0}
+.tm .nm{font-family:var(--disp);font-size:18px;font-weight:600;color:#fff}
+.tm .rl{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin:3px 0 12px}
+.tm .dt{font-size:13.5px;color:var(--muted);margin-bottom:5px}
+.tm .dt a{color:var(--orange);text-decoration:none}
+.tm .dt a:hover{text-decoration:underline}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
+.ci p{color:var(--muted);margin-bottom:26px;font-size:16px;line-height:1.7}
+.ci-item{display:flex;gap:14px;margin-bottom:18px}
+.ci-dot{width:38px;height:38px;border-radius:9px;background:var(--orange);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ci-d strong{color:#fff;display:block;font-size:14.5px;margin-bottom:2px;font-family:var(--disp);font-weight:600}
+.ci-d,.ci-d a{color:var(--muted);font-size:14px;text-decoration:none}
+.ci-d a:hover{color:var(--orange)}
+.form{background:var(--card);border:1px solid var(--card-bd);border-radius:14px;padding:30px}
+.form h3{color:#fff;font-size:19px;margin-bottom:6px;font-weight:600}
+.form .fnote{font-family:var(--mono);font-size:11px;letter-spacing:.5px;color:var(--orange);margin-bottom:20px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{margin-bottom:13px}
+.fg label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#fff;padding:11px 13px;border-radius:8px;font-size:14px;font-family:var(--body);outline:none;transition:border-color .2s;-webkit-appearance:none}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted2)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--orange)}
+.fg textarea{resize:vertical;min-height:92px}
+.fg select option{background:var(--navy);color:#fff}
+.fsub{width:100%;background:var(--orange);color:var(--navy);border:0;padding:14px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;margin-top:6px;font-family:var(--body)}
+.fsub:hover{background:var(--orange-dk)}
+
+/* CARD SHAPE — Velokraft cut-corner panels (distinct from STRALIX) */
+.cat,.why-c,.feat,.svc,.tm,.cata-c,.post{
+  border-radius:0;
+  border:1px solid var(--card-bd);
+  clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.28));
+}
+
+/* FOOTER */
+footer{background:var(--ink);color:var(--muted2);padding:54px 0 26px;border-top:1px solid var(--line)}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
+.foot-brand b{font-family:var(--disp);font-size:19px;font-weight:700;color:#fff;letter-spacing:.5px}
+.foot-brand s{display:block;font-family:var(--mono);font-size:10px;letter-spacing:3px;color:var(--orange);text-transform:uppercase;text-decoration:none;margin-bottom:12px}
+.foot-brand p{font-size:14px;line-height:1.7;max-width:270px}
+.foot-col h5{font-family:var(--disp);color:#9FB0C6;font-size:13px;font-weight:600;margin-bottom:14px}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:9px}
+.foot-col a{color:var(--muted2);text-decoration:none;font-size:14px;transition:color .2s}
+.foot-col a:hover{color:var(--orange)}
+.foot-bot{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:13px;flex-wrap:wrap;gap:10px}
+.foot-bot a{color:var(--muted2);text-decoration:none}
+.foot-bot a:hover{color:#9FB0C6}
+
+/* TOAST */
+.toast{position:fixed;bottom:26px;right:26px;background:#0E7C5A;color:#fff;padding:14px 20px;border-radius:9px;font-size:14px;font-weight:600;box-shadow:0 14px 40px rgba(0,0,0,.4);opacity:0;transform:translateY(14px);transition:.35s;z-index:999;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+
+/* ARTICLE MODAL */
+.modal{position:fixed;inset:0;z-index:500;display:none;padding:40px 20px;overflow-y:auto;background:rgba(4,10,18,.8);backdrop-filter:blur(5px)}
+.modal.open{display:block}
+.modal-box{background:var(--navy);border:1px solid var(--card-bd);border-radius:16px;max-width:720px;margin:0 auto;position:relative;box-shadow:0 40px 100px rgba(0,0,0,.6);overflow:hidden}
+.modal-ph{height:150px;background:linear-gradient(135deg,var(--blue),var(--deep));position:relative;overflow:hidden}
+.modal-ph::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:26px 26px;opacity:.6}
+.modal-ph .em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:54px}
+.modal-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.45);border:1px solid var(--card-bd);color:#fff;font-size:14px;cursor:pointer;z-index:2;transition:.2s}
+.modal-x:hover{background:var(--orange);color:var(--navy)}
+.modal-bd{padding:28px 34px 36px}
+.modal-bd .tag{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--orange);background:rgba(245,166,35,.13);padding:4px 9px;border-radius:5px;display:inline-block;margin-bottom:12px}
+.modal-bd h2{color:#fff;font-size:26px;margin-bottom:6px}
+.modal-bd .meta{font-family:var(--mono);font-size:12px;color:var(--muted2);letter-spacing:.5px;margin-bottom:22px}
+.modal-bd p{color:var(--muted);margin-bottom:14px;line-height:1.75;font-size:15.5px}
+.modal-bd h3{color:#fff;font-size:17px;margin:22px 0 8px}
+.modal-bd ul{color:var(--muted);margin:0 0 14px 22px}
+.modal-bd li{margin-bottom:7px;line-height:1.6}
+.modal-bd b{color:#fff}
+body.noscroll{overflow:hidden}
+
+@media(max-width:920px){
+  .hero-grid,.about,.contact{grid-template-columns:1fr;gap:38px}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:24px 12px}
+  .stat:nth-child(2){border-right:0}
+  .cats,.why,.svcs,.team,.cata,.posts,.foot-top{grid-template-columns:1fr 1fr}
+  .navlinks{display:none}
+  .burger{display:block}
+  .navlinks.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:var(--navy);padding:8px 24px 18px;border-bottom:1px solid var(--line);align-items:stretch}
+  .navlinks.open li{padding:11px 0;border-bottom:1px solid var(--line)}
+  .navlinks.open .navlogin,.navlinks.open .navcta{display:inline-block;margin-top:10px;text-align:center}
+}
+@media(max-width:560px){
+  .cats,.why,.svcs,.team,.cata,.posts,.foot-top,.frow{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .foot-bot{flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .track{animation:none;transform:none}
+}
+</style>
 </head>
 <body>
+
 <!-- NAV -->
-<nav>
-  <a href="#" class="logo-wrap">
-    <img src="assets/images/Velokraft-Logo.png" alt="Velokraft Logo" style="height:48px; width:auto;">
-    <div class="logo-text">
-      <span class="l1">VELOKRAFT</span>
-      <span class="l2">Auto Parts</span>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#categories">Products</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#brands">Brands</a></li>
-    <li><a href="#team">Our Team</a></li>
-    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
-  </ul>
-  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#" class="brandmark" aria-label="Velokraft home">
+      <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M24 2 44 13.5v21L24 46 4 34.5v-21L24 2Z" stroke="#F5A623" stroke-width="2.4" fill="rgba(245,166,35,.08)"/>
+        <path d="M15 16h6l3 10 3-10h6l-7 18h-4L15 16Z" fill="#fff"/>
+      </svg>
+      <span class="nm"><b>VELOKRAFT</b><s>Auto Parts</s></span>
+    </a>
+    <ul class="navlinks" id="nav">
+      <li><a href="#assistant">Parts Assistant</a></li>
+      <li><a href="#categories">Products</a></li>
+      <li><a href="#catalogue">Catalogue</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#" class="navlogin" id="loginBtn">Login</a></li>
+      <li><a href="#contact" class="navcta">Contact Us</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <p class="hero-eyebrow">Estonia's Trusted Auto Parts Supplier</p>
-    <h1>Quality Parts.<br><em>Trusted Performance.</em></h1>
-    <p class="hero-sub">From engine components to body panels — Velokraft supplies genuine and OEM-grade parts for all major vehicle makes. Fast delivery across Europe.</p>
-    <div class="hero-btns">
-      <a href="#categories" class="btn-primary">Browse Products →</a>
-      <a href="#contact" class="btn-outline">Get a Quote</a>
+<section class="hero" id="assistant">
+  <div class="wrap hero-grid">
+    <div class="hero-left reveal">
+      <span class="hero-eyebrow">Estonia's trusted parts supplier</span>
+      <h1>Find the right part.<br><em>First time, every time.</em></h1>
+      <p class="hero-sub">Genuine and OEM-grade components for every major make — backed by real parts specialists and an AI assistant that helps you identify exactly what you need.</p>
+      <div class="hero-chips">
+        <span class="chip"><i>&#9670;</i> <b>50K+</b> parts catalogued</span>
+        <span class="chip"><i>&#9670;</i> OE cross-referenced</span>
+        <span class="chip"><i>&#9670;</i> Europe-wide dispatch</span>
+      </div>
     </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">50<span>K+</span></div>
-      <div class="stat-label">Parts in Stock</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">10<span>+</span></div>
-      <div class="stat-label">Years Experience</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">30<span>+</span></div>
-      <div class="stat-label">Countries Served</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">98<span>%</span></div>
-      <div class="stat-label">Customer Satisfaction</div>
-    </div>
-    <div class="hero-badge">
-      <div class="badge-icon">✓</div>
-      <div class="badge-text">
-        <strong>Genuine &amp; OEM Certified</strong>
-        All parts carry warranty and full quality guarantee
+
+    <div class="hero-right reveal">
+      <div class="console" aria-label="AI Parts Assistant">
+        <div class="console-bar">
+          <span class="pulse"></span>
+          <span class="t"><b>Velokraft</b> Parts Assistant</span>
+          <span class="tag">AI</span>
+        </div>
+        <div class="console-body" id="chat">
+          <div class="msg bot">Hi — I'm the Velokraft parts assistant. Tell me your vehicle (make, model, year) and the part you're after, or paste an OE number, and I'll help you pin it down. 🔧</div>
+        </div>
+        <div class="examples" id="examples">
+          <button class="ex">Brake pads for a 2020 BMW 3 Series</button>
+          <button class="ex">Alternator for VW Golf 1.6 TDI</button>
+          <button class="ex">What is OE number 1K0615301AA?</button>
+        </div>
+        <div class="console-input">
+          <input id="chatInput" type="text" placeholder="Describe your vehicle and the part…" autocomplete="off">
+          <button id="chatSend" aria-label="Send">→</button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BRANDS BAR -->
-<div class="brands-bar">
-  <div class="brands-label">Compatible with all major vehicle brands</div>
-  <div class="brands-list">
-    <span class="brand-name">BMW</span>
-    <span class="brand-name">Mercedes</span>
-    <span class="brand-name">Volkswagen</span>
-    <span class="brand-name">Audi</span>
-    <span class="brand-name">Toyota</span>
-    <span class="brand-name">Ford</span>
-    <span class="brand-name">Volvo</span>
-    <span class="brand-name">Renault</span>
-    <span class="brand-name">Skoda</span>
-    <span class="brand-name">Peugeot</span>
-    <span class="brand-name">Mann & Hummel</span>
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="n" data-to="50">0<span>K+</span></div><div class="l">Parts in stock</div></div>
+    <div class="stat"><div class="n" data-to="10">0<span>+</span></div><div class="l">Years experience</div></div>
+    <div class="stat"><div class="n" data-to="30">0<span>+</span></div><div class="l">Countries served</div></div>
+    <div class="stat"><div class="n" data-to="98">0<span>%</span></div><div class="l">Satisfaction rate</div></div>
   </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="lbl">Compatible with all major vehicle brands</div>
+  <div class="track" id="track"></div>
 </div>
 
 <!-- CATEGORIES -->
-<section id="categories">
-  <p class="section-label">Product Range</p>
-  <h2>Parts for Every Need</h2>
-  <p class="section-intro">We carry a comprehensive range of auto components — from routine maintenance parts to complex mechanical assemblies.</p>
-  <div class="categories-grid">
-    <a href="#contact" class="cat-card">
-      <div class="cat-icon">🔧</div>
-      <div class="cat-name">Engine Components</div>
-      <div class="cat-count">Pistons, gaskets, timing belts &amp; more</div>
-      <span class="cat-arrow">↗</span>
-    </a>
-    <a href="#contact" class="cat-card">
-      <div class="cat-icon">🛞</div>
-      <div class="cat-name">Suspension &amp; Steering</div>
-      <div class="cat-count">Shocks, struts, tie rods, ball joints</div>
-      <span class="cat-arrow">↗</span>
-    </a>
-    <a href="#contact" class="cat-card">
-      <div class="cat-icon">🚗</div>
-      <div class="cat-name">Body &amp; Exterior</div>
-      <div class="cat-count">Bumpers, fenders, mirrors, hoods</div>
-      <span class="cat-arrow">↗</span>
-    </a>
-    <a href="#contact" class="cat-card">
-      <div class="cat-icon">⚡</div>
-      <div class="cat-name">Electrical &amp; Ignition</div>
-      <div class="cat-count">Batteries, alternators, spark plugs</div>
-      <span class="cat-arrow">↗</span>
-    </a>
-    <a href="#contact" class="cat-card">
-      <div class="cat-icon">🛑</div>
-      <div class="cat-name">Brakes &amp; Rotors</div>
-      <div class="cat-count">Pads, discs, calipers, brake fluid</div>
-      <span class="cat-arrow">↗</span>
-    </a>
-    <a href="#contact" class="cat-card">
-      <div class="cat-icon">❄️</div>
-      <div class="cat-name">Cooling System</div>
-      <div class="cat-count">Radiators, fans, thermostats, coolant</div>
-      <span class="cat-arrow">↗</span>
-    </a>
-    <a href="#contact" class="cat-card">
-      <div class="cat-icon">⚙️</div>
-      <div class="cat-name">Transmission</div>
-      <div class="cat-count">Clutches, gearboxes, driveshafts</div>
-      <span class="cat-arrow">↗</span>
-    </a>
-    <a href="#contact" class="cat-card">
-      <div class="cat-icon">🔩</div>
-      <div class="cat-name">Filters &amp; Maintenance</div>
-      <div class="cat-count">Oil, air, fuel &amp; cabin filters</div>
-      <span class="cat-arrow">↗</span>
-    </a>
+<section class="sec" id="categories">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Product range</span>
+      <h2>Parts for every system</h2>
+      <p>A comprehensive range — from routine maintenance items to complex mechanical assemblies. Start typing to filter.</p>
+    </div>
+    <div class="cat-search reveal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="catSearch" type="text" placeholder="Search categories — e.g. brakes, filter, suspension…">
+      <span class="k">LIVE</span>
+    </div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec sec-deep" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why Velokraft</span>
+      <h2>A supplier that works like a partner</h2>
+      <p>Not just a parts shop — a long-term partner for workshops, fleets, and owners who can't afford the wrong part.</p>
+    </div>
+    <div class="why">
+      <div class="why-c reveal"><div class="n">01 / FIT</div><h3>Parts that actually fit</h3><p>Every order is cross-referenced against OE part numbers, so you get the right component the first time — no guesswork, no returns.</p></div>
+      <div class="why-c reveal"><div class="n">02 / SPEED</div><h3>Same-day dispatch</h3><p>95% of in-stock orders leave our Tallinn warehouse within 4 hours of confirmation, Monday to Saturday.</p></div>
+      <div class="why-c reveal"><div class="n">03 / TRUST</div><h3>Verified suppliers only</h3><p>We source exclusively from ISO-certified manufacturers and authorised distributors — zero counterfeit risk.</p></div>
+      <div class="why-c reveal"><div class="n">04 / SUPPORT</div><h3>Real specialists</h3><p>Trained parts specialists — plus our AI assistant — help you identify the exact component fast.</p></div>
+    </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-content">
-      <p class="section-label">About Velokraft</p>
-      <h2>Built on a Foundation of Trust</h2>
-      <p>Velokraft Auto Parts is a leading European supplier of high-quality auto components, headquartered in Tallinn, Estonia. We serve workshops, dealers, and vehicle owners across Europe with fast, reliable delivery.</p>
+<section class="sec" id="about">
+  <div class="wrap about">
+    <div class="about-txt reveal">
+      <span class="eyebrow">About Velokraft</span>
+      <h2>Built on a foundation of trust</h2>
+      <p>Velokraft Auto Parts is a European supplier of high-quality auto components, headquartered in Tallinn, Estonia. We serve workshops, dealers, and vehicle owners across Europe with fast, reliable delivery.</p>
       <p>We source every part from verified, ISO-certified manufacturers and cross-check against OEM specifications before it reaches you. Our team brings deep automotive expertise to every order.</p>
-      <p>Whether you're a garage owner looking for a trusted trade partner, or an individual searching for a specific part — Velokraft delivers.</p>
+      <p>Whether you're a garage owner looking for a trusted trade partner or an individual after a specific part — Velokraft delivers.</p>
     </div>
-    <div class="about-features">
-      <div class="about-feature">
-        <div class="feature-icon">🏭</div>
-        <div class="feature-text">
-          <h4>Verified Suppliers Only</h4>
-          <p>We partner exclusively with ISO-certified manufacturers and authorized distributors — zero counterfeit risk.</p>
-        </div>
-      </div>
-      <div class="about-feature">
-        <div class="feature-icon">🚚</div>
-        <div class="feature-text">
-          <h4>Europe-Wide Delivery</h4>
-          <p>Fast dispatch from our Tallinn warehouse. Express delivery available across the EU and beyond.</p>
-        </div>
-      </div>
-      <div class="about-feature">
-        <div class="feature-icon">🛡️</div>
-        <div class="feature-text">
-          <h4>Warranty on Every Part</h4>
-          <p>All products carry a minimum 6-month warranty. Many OEM parts come with 12–24 month coverage.</p>
-        </div>
-      </div>
-      <div class="about-feature">
-        <div class="feature-icon">👨‍🔧</div>
-        <div class="feature-text">
-          <h4>Expert Support Team</h4>
-          <p>Our trained auto parts specialists help you identify the exact part you need — fast.</p>
-        </div>
-      </div>
+    <div class="feats reveal">
+      <div class="feat"><div class="fi">🏭</div><div><h4>Verified suppliers only</h4><p>ISO-certified manufacturers and authorised distributors — zero counterfeit risk.</p></div></div>
+      <div class="feat"><div class="fi">🚚</div><div><h4>Europe-wide delivery</h4><p>Fast dispatch from Tallinn. Express delivery across the EU and beyond.</p></div></div>
+      <div class="feat"><div class="fi">🛡️</div><div><h4>Warranty on every part</h4><p>Minimum 6-month warranty; many OEM parts carry 12–24 month cover.</p></div></div>
+      <div class="feat"><div class="fi">👨‍🔧</div><div><h4>Expert support team</h4><p>Specialists who identify the exact part you need — quickly.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- WHY US -->
-<section id="why">
-  <p class="section-label">Why Choose Velokraft</p>
-  <h2>The Velokraft Difference</h2>
-  <p class="section-intro">We're not just a parts supplier — we're a long-term partner for workshops, fleet operators, and individual car owners.</p>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-num">01 — Reliability</div>
-      <div class="why-title">Parts That Actually Fit</div>
-      <div class="why-desc">Our cataloguing system cross-references OEM part numbers, so you get the right part every time — no guesswork, no returns.</div>
+<!-- CATALOGUE -->
+<section class="sec sec-deep" id="catalogue">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Catalogue</span>
+      <h2>Browse the full range, offline</h2>
+      <p>Download our parts catalogues — share them with your workshop, or keep them handy at the counter.</p>
     </div>
-    <div class="why-card">
-      <div class="why-num">02 — Speed</div>
-      <div class="why-title">Same-Day Dispatch</div>
-      <div class="why-desc">Workshops can't afford downtime. We dispatch 95% of in-stock orders within 4 hours of confirmation, Monday to Saturday.</div>
+    <div class="cata">
+      <div class="cata-c reveal"><div class="ic">📕</div><h4>Full Catalogue 2026</h4><div class="meta">ALL RANGES · PDF</div><a href="#">↓ Download</a></div>
+      <div class="cata-c reveal"><div class="ic">🛑</div><h4>Brakes &amp; Friction</h4><div class="meta">PADS · DISCS · CALIPERS</div><a href="#">↓ Download</a></div>
+      <div class="cata-c reveal"><div class="ic">🔧</div><h4>Engine &amp; Drivetrain</h4><div class="meta">COMPONENTS · ASSEMBLIES</div><a href="#">↓ Download</a></div>
+      <div class="cata-c reveal"><div class="ic">🔩</div><h4>Filters &amp; Service</h4><div class="meta">OIL · AIR · FUEL · CABIN</div><a href="#">↓ Download</a></div>
     </div>
-    <div class="why-card">
-      <div class="why-num">03 — Pricing</div>
-      <div class="why-title">Competitive Trade Pricing</div>
-      <div class="why-desc">Volume-based pricing for garages and fleet managers. Register as a trade customer and unlock preferred rates on every order.</div>
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <a href="#contact" class="btn-orange reveal">Request a printed catalogue →</a>
+      <span class="cata-note reveal">// Catalogues updated quarterly</span>
     </div>
-    <div class="why-card">
-      <div class="why-num">04 — Quality</div>
-      <div class="why-title">Quality-Tested Stock</div>
-      <div class="why-desc">Every batch is sampled and tested on arrival. We reject any supplier that fails our incoming quality inspection — no exceptions.</div>
-    </div>
-  </div>
-</section>
-
-<!-- BRANDS -->
-<section id="brands">
-  <p class="section-label">Our Brand Partners</p>
-  <h2>We Stock Parts From the Best</h2>
-  <p class="section-intro">We carry both OEM parts and high-quality aftermarket alternatives from globally recognized brands.</p>
-  <div class="brands-grid">
-    <div class="brand-card"><div class="brand-logo-text">Bosch</div><div class="brand-origin">Germany</div></div>
-    <div class="brand-card"><div class="brand-logo-text">Denso</div><div class="brand-origin">Japan</div></div>
-    <div class="brand-card"><div class="brand-logo-text">Valeo</div><div class="brand-origin">France</div></div>
-    <div class="brand-card"><div class="brand-logo-text">NGK</div><div class="brand-origin">Japan</div></div>
-    <div class="brand-card"><div class="brand-logo-text">Monroe</div><div class="brand-origin">Belgium</div></div>
-    <div class="brand-card"><div class="brand-logo-text">Mahle</div><div class="brand-origin">Germany</div></div>
-    <div class="brand-card"><div class="brand-logo-text">Febi</div><div class="brand-origin">Germany</div></div>
-    <div class="brand-card"><div class="brand-logo-text">SKF</div><div class="brand-origin">Sweden</div></div>
-    <div class="brand-card"><div class="brand-logo-text">Gates</div><div class="brand-origin">USA</div></div>
-    <div class="brand-card"><div class="brand-logo-text">Continental</div><div class="brand-origin">Germany</div></div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
-  <p class="section-label">Our Services</p>
-  <h2>More Than Just Parts</h2>
-  <p class="section-intro">End-to-end support for garages, dealers, and fleet managers across Europe.</p>
-  <div class="services-list">
-    <div class="service-item">
-      <div class="service-icon">📦</div>
-      <div>
-        <div class="service-title">Bulk &amp; Trade Supply</div>
-        <div class="service-desc">Monthly standing orders, bulk pricing, and a dedicated account manager for registered trade customers.</div>
-      </div>
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we do</span>
+      <h2>Services built for trade</h2>
+      <p>Everything a workshop, fleet, or dealer needs from a parts partner.</p>
     </div>
-    <div class="service-item">
-      <div class="service-icon">🔍</div>
-      <div>
-        <div class="service-title">Part Identification</div>
-        <div class="service-desc">Not sure of the part number? Share your vehicle's VIN and our team will identify the exact part you need.</div>
-      </div>
+    <div class="svcs">
+      <div class="svc reveal"><div class="si">🔍</div><h4>Part identification</h4><p>Share a VIN or OE number and our team identifies the exact part you need.</p></div>
+      <div class="svc reveal"><div class="si">🔄</div><h4>Easy returns</h4><p>Hassle-free 15-day returns on all unused parts in original packaging.</p></div>
+      <div class="svc reveal"><div class="si">📋</div><h4>VAT-compliant invoicing</h4><p>Proper EU VAT invoices on every order, with digital records.</p></div>
+      <div class="svc reveal"><div class="si">🚚</div><h4>Logistics arrangement</h4><p>We arrange freight and delivery for your orders — from single parcels to pallet shipments across Europe.</p></div>
+      <div class="svc reveal"><div class="si">📞</div><h4>Technical helpline</h4><p>Mon–Sat support for compatibility, installation, and technical advice.</p></div>
+      <div class="svc reveal"><div class="si">🤖</div><h4>AI parts assistant</h4><p>Instant first-line help identifying components, any time of day.</p></div>
     </div>
-    <div class="service-item">
-      <div class="service-icon">🔄</div>
-      <div>
-        <div class="service-title">Easy Returns</div>
-        <div class="service-desc">Ordered the wrong part? Hassle-free 15-day return policy on all unused parts in original packaging.</div>
-      </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="sec sec-deep" id="blog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Insights</span>
+      <h2>Parts knowledge &amp; guides</h2>
+      <p>Practical guidance from our team — on choosing, fitting, and getting the most from your parts.</p>
     </div>
-    <div class="service-item">
-      <div class="service-icon">📋</div>
-      <div>
-        <div class="service-title">VAT-Compliant Invoicing</div>
-        <div class="service-desc">Proper EU VAT-compliant invoices on every order. Digital records available through your customer portal.</div>
-      </div>
-    </div>
-    <div class="service-item">
-      <div class="service-icon">🚛</div>
-      <div>
-        <div class="service-title">Fleet Supply Contracts</div>
-        <div class="service-desc">Custom supply agreements for logistics fleets, taxi operators, and government vehicle pools.</div>
-      </div>
-    </div>
-    <div class="service-item">
-      <div class="service-icon">📞</div>
-      <div>
-        <div class="service-title">Technical Helpline</div>
-        <div class="service-desc">Call our team Mon–Sat for part compatibility queries, installation guidance, and technical advice.</div>
-      </div>
+    <div class="posts">
+      <a href="#" class="post reveal">
+        <div class="ph"><div class="em">🔢</div></div>
+        <div class="bd"><span class="tag">Guide</span><h4>How to read an OE part number</h4><p>What those digits actually mean — and how to use them to find the exact replacement.</p><span class="rd">Read →</span><div class="dt">Jun 2026 · 4 min</div></div>
+      </a>
+      <a href="#" class="post reveal">
+        <div class="ph"><div class="em">🛑</div></div>
+        <div class="bd"><span class="tag">Maintenance</span><h4>5 signs your brake discs need replacing</h4><p>Vibration, scoring, lip wear and more — what to check before they become a safety issue.</p><span class="rd">Read →</span><div class="dt">May 2026 · 5 min</div></div>
+      </a>
+      <a href="#" class="post reveal">
+        <div class="ph"><div class="em">⚙️</div></div>
+        <div class="bd"><span class="tag">Buying</span><h4>OEM vs aftermarket: the real difference</h4><p>When genuine matters, when quality aftermarket is the smart call, and how to tell them apart.</p><span class="rd">Read →</span><div class="dt">May 2026 · 6 min</div></div>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- TEAM -->
-<section id="team">
-  <p class="section-label">Our Team</p>
-  <h2>Talk to the Right Person</h2>
-  <p class="section-intro">Our experienced team is here to help with any enquiry — from sourcing a specific part to setting up a trade account.</p>
-  <div class="team-grid">
-    <div class="team-card">
-      <div class="team-avatar">RS</div>
-      <div>
-        <div class="team-name">Ronak Sheth</div>
-        <div class="team-role">Purchase Director</div>
-        <div class="team-detail">📞 <a href="tel:+37256472192">+372 – 5647 2192</a></div>
-        <div class="team-detail">✉️ <a href="mailto:admin@velokraft.eu">admin@velokraft.eu</a></div>
-        
-      </div>
+<section class="sec" id="team">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our team</span>
+      <h2>Talk to the right person</h2>
+      <p>Real people, ready to help — from sourcing a single part to setting up a trade account.</p>
     </div>
-    <div class="team-card">
-      <div class="team-avatar">MS</div>
-      <div>
-        <div class="team-name">Maulik Shah</div>
-        <div class="team-role">Sales Director</div>
-        <div class="team-detail">📞 <a href="tel:+37258482192">+372 5848 2192</a></div>
-        <div class="team-detail">✉️ <a href="mailto:sales@velokraft.eu">sales@velokraft.eu</a></div>
-        <div class="team-detail">📍 Harju maakond, Tallinn, Narva mnt 5, 10117, Estonia</div>
+    <div class="team">
+      <div class="tm reveal">
+        <div class="av">MS</div>
+        <div>
+          <div class="nm">Maulik Shah</div>
+          <div class="rl">Sales Director</div>
+          <div class="dt">📞 <a href="tel:+37258482192">+372 5848 2192</a></div>
+          <div class="dt">✉️ <a href="mailto:sales@velokraft.eu">sales@velokraft.eu</a></div>
+          <div class="dt">📍 Narva mnt 5, Tallinn, 10117, Estonia</div>
+        </div>
+      </div>
+      <div class="tm reveal">
+        <div class="av">RS</div>
+        <div>
+          <div class="nm">Ronak Sheth</div>
+          <div class="rl">Purchase Director</div>
+          <div class="dt">📞 <a href="tel:+37256472192">+372 5647 2192</a></div>
+          <div class="dt">✉️ <a href="mailto:admin@velokraft.eu">admin@velokraft.eu</a></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-  <p class="section-label">Get in Touch</p>
-  <h2>Ready to Order?</h2>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <p>Whether you're a workshop owner looking for a reliable trade partner, or searching for a specific part — reach out and we'll get back to you within 2 hours during business hours.</p>
-      <div class="contact-item">
-        <div class="contact-dot">📍</div>
-        <div class="contact-detail">
-          <strong>Head Office</strong>
-          Harju maakond, Tallinn, Narva mnt 5, 10117, Estonia
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-dot">📞</div>
-        <div class="contact-detail">
-          <strong>Sales — Maulik Shah</strong>
-          <a href="tel:+37258482192" style="color:#93C5FD;">+372 5848 2192</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-dot">📞</div>
-        <div class="contact-detail">
-          <strong>Purchasing — Ronak Sheth</strong>
-          <a href="tel:+37256472192" style="color:#93C5FD;">+372 – 5647 2192</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-dot">✉️</div>
-        <div class="contact-detail">
-          <strong>General Enquiries</strong>
-          <a href="mailto:admin@velokraft.eu" style="color:#93C5FD;">admin@velokraft.eu</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-dot">✉️</div>
-        <div class="contact-detail">
-          <strong>Sales Enquiries</strong>
-          <a href="mailto:sales@velokraft.eu" style="color:#93C5FD;">sales@velokraft.eu</a>
-        </div>
-      </div>
-      
+<section class="sec sec-deep" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Ready to order?</h2>
     </div>
-
-    <div class="contact-form">
-      <h3>Send an Enquiry</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" id="fname" placeholder="John Smith">
+    <div class="contact">
+      <div class="ci reveal">
+        <p>Workshop owner after a reliable trade partner, or chasing one specific part? Reach out — we reply within 2 hours during business hours.</p>
+        <div class="ci-item"><div class="ci-dot">📍</div><div class="ci-d"><strong>Head office</strong>Narva mnt 5, Tallinn, 10117, Estonia</div></div>
+        <div class="ci-item"><div class="ci-dot">📞</div><div class="ci-d"><strong>Sales — Maulik Shah</strong><a href="tel:+37258482192">+372 5848 2192</a></div></div>
+        <div class="ci-item"><div class="ci-dot">📞</div><div class="ci-d"><strong>Purchasing — Ronak Sheth</strong><a href="tel:+37256472192">+372 5647 2192</a></div></div>
+        <div class="ci-item"><div class="ci-dot">✉️</div><div class="ci-d"><strong>Email</strong><a href="mailto:sales@velokraft.eu">sales@velokraft.eu</a> · <a href="mailto:admin@velokraft.eu">admin@velokraft.eu</a></div></div>
+      </div>
+      <div class="form reveal">
+        <h3>Send an enquiry</h3>
+        <div class="fnote">// Replies within 2 business hours</div>
+        <div class="frow">
+          <div class="fg"><label>Your name</label><input id="fname" type="text" placeholder="John Smith"></div>
+          <div class="fg"><label>Phone</label><input id="fphone" type="tel" placeholder="+372 …"></div>
         </div>
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" id="fphone" placeholder="+372 ...">
+        <div class="fg"><label>Email</label><input id="femail" type="email" placeholder="you@example.com"></div>
+        <div class="fg"><label>Enquiry type</label>
+          <select id="ftype">
+            <option value="">Select type…</option>
+            <option>Part availability</option>
+            <option>Trade / bulk order</option>
+            <option>Returns / warranty</option>
+            <option>General query</option>
+          </select>
         </div>
+        <div class="fg"><label>Message / part details</label><textarea id="fmsg" placeholder="E.g. brake pads for a 2020 BMW 3 Series — please check availability…"></textarea></div>
+        <button class="fsub" id="formSend">Send enquiry →</button>
       </div>
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" id="femail" placeholder="you@example.com">
-      </div>
-      <div class="form-group">
-        <label>Enquiry Type</label>
-        <select id="ftype">
-          <option value="">Select enquiry type...</option>
-          <option>Part Availability</option>
-          <option>Trade / Bulk Order</option>
-          <option>Fleet Supply Contract</option>
-          <option>Returns / Warranty</option>
-          <option>General Query</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Message / Part Details</label>
-        <textarea id="fmsg" placeholder="E.g. I need brake pads for a 2020 BMW 3 Series — please check availability..."></textarea>
-      </div>
-      <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;">VELOKRAFT</div>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <b>VELOKRAFT</b><s>Auto Parts</s>
+        <p>Your reliable European partner for genuine and OEM-grade auto components. Based in Tallinn, Estonia.</p>
       </div>
-      <div style="font-size:11px;color:var(--orange);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">Auto Parts</div>
-      <p>Your reliable European partner for genuine and OEM-grade auto components. Based in Tallinn, Estonia.</p>
+      <div class="foot-col"><h5>Products</h5><ul><li><a href="#categories">Engine</a></li><li><a href="#categories">Suspension</a></li><li><a href="#categories">Brakes</a></li><li><a href="#categories">Electrical</a></li><li><a href="#catalogue">Catalogue</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="#about">About</a></li><li><a href="#why">Why us</a></li><li><a href="#services">Services</a></li><li><a href="#blog">Blog</a></li><li><a href="#team">Team</a></li></ul></div>
+      <div class="foot-col"><h5>Contact</h5><ul><li><a href="mailto:sales@velokraft.eu">sales@velokraft.eu</a></li><li><a href="mailto:admin@velokraft.eu">admin@velokraft.eu</a></li><li><a href="tel:+37258482192">+372 5848 2192</a></li><li><a href="tel:+37256472192">+372 5647 2192</a></li></ul></div>
     </div>
-    <div class="footer-col">
-      <h5>Products</h5>
-      <ul>
-        <li><a href="#categories">Engine Parts</a></li>
-        <li><a href="#categories">Suspension</a></li>
-        <li><a href="#categories">Brakes</a></li>
-        <li><a href="#categories">Electrical</a></li>
-        <li><a href="#categories">Body Parts</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#brands">Our Brands</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#team">Our Team</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Contact</h5>
-      <ul>
-        <li><a href="mailto:sales@velokraft.eu">sales@velokraft.eu</a></li>
-        <li><a href="mailto:admin@velokraft.eu">admin@velokraft.eu</a></li>
-        <li><a href="tel:+37258482192">+372 5848 2192</a></li>
-        <li><a href="tel:+37256472192">+372 5647 2192</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 Velokraft Auto Parts. All rights reserved.</span>
-    <div>
-      <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
-      <a href="#">Terms of Use</a>
+    <div class="foot-bot">
+      <span>© 2026 Velokraft Auto Parts. All rights reserved.</span>
+      <div><a href="#">Privacy</a> · <a href="#">Terms</a></div>
     </div>
   </div>
 </footer>
 
-<div class="toast" id="toast">✓ Enquiry sent! We'll contact you within 2 hours.</div>
+<div class="toast" id="toast">✓ Enquiry sent — we'll be in touch within 2 hours.</div>
 
+<!-- ARTICLE MODAL -->
+<div class="modal" id="postModal" aria-hidden="true">
+  <div class="modal-box">
+    <div class="modal-ph"><div class="em" id="mEm"></div><button class="modal-x" id="modalX" aria-label="Close">✕</button></div>
+    <div class="modal-bd">
+      <span class="tag" id="mTag"></span>
+      <h2 id="mTitle"></h2>
+      <div class="meta" id="mMeta"></div>
+      <div id="mBody"></div>
+      <a href="#contact" class="btn-orange" id="mCta" style="margin-top:24px">Enquire about this →</a>
+    </div>
+  </div>
+</div>
 
+<script>
+/* ---------- NAV ---------- */
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>20));
+const burger=document.getElementById('burger'),nav=document.getElementById('nav');
+burger.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.addEventListener('click',e=>{if(e.target.tagName==='A')nav.classList.remove('open')});
 
+/* ---------- LOGIN (placeholder) ---------- */
+document.getElementById('loginBtn').addEventListener('click',e=>{
+  e.preventDefault();
+  flash('🔒 Trade portal coming soon — contact us to set up an account.');
+});
+
+/* ---------- REVEAL ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- STAT COUNTERS ---------- */
+const counted=new Set();
+const sio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting&&!counted.has(e.target)){counted.add(e.target);
+    const el=e.target,to=+el.dataset.to,span=el.querySelector('span').outerHTML;let n=0;
+    const step=Math.max(1,Math.round(to/45));
+    const t=setInterval(()=>{n+=step;if(n>=to){n=to;clearInterval(t)}el.innerHTML=n+span},22);
+  }
+}),{threshold:.5});
+document.querySelectorAll('.stat .n').forEach(el=>sio.observe(el));
+
+/* ---------- BRAND MARQUEE ---------- */
+const brands=['BMW','Mercedes-Benz','Volkswagen','Audi','Toyota','Ford','Volvo','Renault','Škoda','Peugeot','Mann+Hummel','Bosch'];
+const track=document.getElementById('track');
+track.innerHTML=[...brands,...brands].map(b=>`<span>${b}</span>`).join('');
+
+/* ---------- CATEGORIES ---------- */
+const CATS=[
+  {ic:'🔧',nm:'Engine Components',ds:'Pistons, gaskets, timing belts',k:'engine piston gasket timing belt motor'},
+  {ic:'🛞',nm:'Suspension & Steering',ds:'Shocks, struts, tie rods, ball joints',k:'suspension steering shock strut tie rod ball joint'},
+  {ic:'🚗',nm:'Body & Exterior',ds:'Bumpers, fenders, mirrors, hoods',k:'body exterior bumper fender mirror hood panel'},
+  {ic:'⚡',nm:'Electrical & Ignition',ds:'Batteries, alternators, spark plugs',k:'electrical ignition battery alternator spark plug'},
+  {ic:'🛑',nm:'Brakes & Rotors',ds:'Pads, discs, calipers, brake fluid',k:'brakes rotor pad disc caliper fluid'},
+  {ic:'❄️',nm:'Cooling System',ds:'Radiators, fans, thermostats, coolant',k:'cooling radiator fan thermostat coolant'},
+  {ic:'⚙️',nm:'Transmission',ds:'Clutches, gearboxes, driveshafts',k:'transmission clutch gearbox driveshaft'},
+  {ic:'🔩',nm:'Filters & Maintenance',ds:'Oil, air, fuel & cabin filters',k:'filter maintenance oil air fuel cabin service'}
+];
+const catsEl=document.getElementById('cats'),catSearch=document.getElementById('catSearch');
+function renderCats(q=''){
+  q=q.trim().toLowerCase();
+  const list=CATS.filter(c=>!q||c.nm.toLowerCase().includes(q)||c.k.includes(q));
+  catsEl.innerHTML=list.length?list.map(c=>`<a href="#contact" class="cat"><span class="ic">${c.ic}</span><div class="nm">${c.nm}</div><div class="ds">${c.ds}</div><span class="ar">↗</span></a>`).join(''):`<div class="cat-empty">No category matches "<b>${q}</b>". Try the AI assistant up top, or <a href="#contact" style="color:var(--orange)">send an enquiry</a>.</div>`;
+}
+renderCats();
+catSearch.addEventListener('input',e=>renderCats(e.target.value));
+
+/* ---------- AI PARTS ASSISTANT ---------- */
+const SYSTEM=`You are the Velokraft Parts Assistant, an AI helper on the website of Velokraft Auto Parts — a parts supplier in Tallinn, Estonia serving workshops, dealers, fleets and car owners across Europe.
+Your job: help visitors identify the right auto part. If they haven't said, ask for vehicle make, model, year and engine, plus the part or symptom. Suggest the likely part category and what info pins it down (VIN or OE number). Be concise and knowledgeable, like an experienced parts counter specialist.
+You CANNOT see live stock or prices. For availability, pricing and ordering, direct them to send an enquiry via the form on this page or contact sales@velokraft.eu / +372 5848 2192. Never invent specific prices or stock numbers.
+Velokraft carries: engine, suspension & steering, body & exterior, electrical & ignition, brakes, cooling, transmission, and filters/maintenance parts. Compatible with BMW, Mercedes, VW, Audi, Toyota, Ford, Volvo, Renault, Škoda, Peugeot and more.
+Keep replies short — 2 to 5 sentences. Be warm and professional.`;
+const chat=document.getElementById('chat'),input=document.getElementById('chatInput'),sendBtn=document.getElementById('chatSend');
+let history=[];
+function addMsg(text,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=text;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;}
+function addDots(){const d=document.createElement('div');d.className='msg bot';d.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;}
+async function send(text){
+  text=(text||input.value).trim();if(!text)return;
+  input.value='';sendBtn.disabled=true;
+  addMsg(text,'user');history.push({role:'user',content:text});
+  const dots=addDots();
+  try{
+    const res=await fetch("chat.php",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({messages:history})
+    });
+    const data=await res.json();
+    const reply=data.reply||"Sorry, I didn't catch that — could you rephrase?";
+    dots.remove();
+    const m=addMsg('','bot');
+    let i=0;const tw=setInterval(()=>{m.textContent=reply.slice(0,i+=2);chat.scrollTop=chat.scrollHeight;if(i>=reply.length){clearInterval(tw);m.textContent=reply}},10);
+    history.push({role:'assistant',content:reply});
+  }catch(err){
+    dots.remove();
+    addMsg("I'm having trouble connecting right now. Please email sales@velokraft.eu or call +372 5848 2192 and our team will help straight away.",'bot');
+  }finally{sendBtn.disabled=false;input.focus();}
+}
+sendBtn.addEventListener('click',()=>send());
+input.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+document.getElementById('examples').addEventListener('click',e=>{if(e.target.classList.contains('ex'))send(e.target.textContent)});
+
+/* ---------- ENQUIRY FORM ---------- */
+document.getElementById('formSend').addEventListener('click',()=>{
+  const name=document.getElementById('fname').value.trim();
+  const email=document.getElementById('femail').value.trim();
+  const msg=document.getElementById('fmsg').value.trim();
+  if(!name||!email||!msg){alert('Please add your name, email and a message.');return;}
+  const data=new FormData();
+  data.append('name',name);data.append('email',email);
+  data.append('phone',document.getElementById('fphone').value);
+  data.append('type',document.getElementById('ftype').value);
+  data.append('message',msg);
+  const btn=document.getElementById('formSend');btn.disabled=true;
+  fetch('send.php',{method:'POST',body:data})
+    .then(r=>r.text()).then(res=>{
+      if(res.trim()==='success'){flash("✓ Enquiry sent — we'll be in touch within 2 hours.");['fname','femail','fphone','ftype','fmsg'].forEach(id=>document.getElementById(id).value='');}
+      else{flash("⚠ Couldn't send right now — please email sales@velokraft.eu directly.");}
+    })
+    .catch(()=>flash("⚠ Couldn't send right now — please email sales@velokraft.eu directly."))
+    .finally(()=>{btn.disabled=false;});
+});
+
+/* ---------- BLOG ARTICLES ---------- */
+const POSTS=[
+{tag:'Guide',em:'🔢',title:'How to read an OE part number',meta:'Guide · 4 min read',body:`<p>An OE (Original Equipment) number is the manufacturer's own reference for a specific part. It's the most reliable way to identify exactly what fits your vehicle — far more precise than a part name alone, because a single model can use several versions of the "same" component across its production years.</p><h3>Why it matters</h3><p>Two cars that look identical can take different parts depending on engine, trim, gearbox, or build date. The OE number cuts through that ambiguity: match the number, and you match the part.</p><h3>Where to find it</h3><ul><li>Stamped or printed on the old part itself</li><li>In your vehicle's service documentation</li><li>Via a VIN lookup, which maps your exact build to its original components</li></ul><h3>Using it with Velokraft</h3><p>Send us an OE number or your VIN and we'll cross-reference it against our catalogue — including quality aftermarket equivalents — so you get the right part the first time. No number to hand? Our parts assistant or our team can help you trace it.</p>`},
+{tag:'Maintenance',em:'🛑',title:'5 signs your brake discs need replacing',meta:'Maintenance · 5 min read',body:`<p>Brake discs wear gradually, then fail quickly. Catching the warning signs early keeps braking safe and avoids damaging your pads and calipers. Here are five to watch for.</p><h3>1. Vibration under braking</h3><p>A pulsing through the pedal or steering wheel when you brake usually means the discs have warped or worn unevenly.</p><h3>2. Scoring or deep grooves</h3><p>Visible circular grooves across the disc face mean the friction surface is damaged and no longer gripping evenly.</p><h3>3. A raised lip at the edge</h3><p>Run a finger across the disc — a pronounced lip at the outer edge shows how much material has worn away from the braking surface.</p><h3>4. Below minimum thickness</h3><p>Every disc has a stamped minimum thickness. Once it's reached, the disc must be replaced, not skimmed.</p><h3>5. Cracks, blue patches, or grinding</h3><p>Heat cracks, blue discolouration, or a grinding noise point to discs at the end of their life that need immediate attention.</p><p>Replacing discs? Replace the pads at the same time — send us your vehicle details and we'll cross-reference both.</p>`},
+{tag:'Buying',em:'⚙️',title:'OEM vs aftermarket: the real difference',meta:'Buying · 6 min read',body:`<p>"OEM" and "aftermarket" get used loosely, so it's worth being precise — the difference affects price, fit, and warranty.</p><h3>The three categories</h3><ul><li><b>Genuine</b> — sold in the carmaker's own box, at main-dealer prices.</li><li><b>OEM</b> — made by the same supplier that produced the original part, often in plain packaging, at lower cost.</li><li><b>Aftermarket</b> — made by independent manufacturers; quality ranges from excellent to poor.</li></ul><h3>When genuine or OEM matters</h3><p>Safety-critical and tightly-toleranced systems — timing components, certain electronics, complex assemblies — are where original-grade parts earn their premium.</p><h3>When quality aftermarket is the smart call</h3><p>For many wear items, a reputable aftermarket brand matches OEM performance at a better price. The key is the brand and its certifications, not the word "aftermarket" itself.</p><h3>How Velokraft helps</h3><p>We stock genuine, OEM, and verified aftermarket options from ISO-certified suppliers — and we'll tell you honestly which makes sense for your job and budget.</p>`}
+];
+const modal=document.getElementById('postModal');
+function openPost(i){const p=POSTS[i];document.getElementById('mEm').textContent=p.em;document.getElementById('mTag').textContent=p.tag;document.getElementById('mTitle').textContent=p.title;document.getElementById('mMeta').textContent=p.meta;document.getElementById('mBody').innerHTML=p.body;modal.classList.add('open');document.body.classList.add('noscroll');modal.scrollTop=0;}
+function closePost(){modal.classList.remove('open');document.body.classList.remove('noscroll');}
+document.querySelectorAll('.post').forEach((el,i)=>el.addEventListener('click',e=>{e.preventDefault();openPost(i);}));
+document.getElementById('modalX').addEventListener('click',closePost);
+document.getElementById('mCta').addEventListener('click',closePost);
+modal.addEventListener('click',e=>{if(e.target===modal)closePost();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePost();});
+
+/* ---------- CATALOGUE (placeholder downloads) ---------- */
+document.querySelectorAll('.cata-c a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();flash('📄 Catalogue PDF coming soon — email us for the latest copy.');}));
+
+/* ---------- TOAST ---------- */
+function flash(message){
+  const t=document.getElementById('toast');t.textContent=message;t.classList.add('show');
+  clearTimeout(t._tm);t._tm=setTimeout(()=>t.classList.remove('show'),4000);
+}
+</script>
 </body>
 </html>
